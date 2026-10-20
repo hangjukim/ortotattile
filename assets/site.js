@@ -70,14 +70,15 @@
 		if (top) closeOverlay(top);
 	});
 
-	// menu shows once per visit; overlay URLs (/photos etc.) open that overlay
+	// the menu opens every time the home page loads, and once per visit on other pages;
+	// overlay URLs (/photos etc.) open that overlay
 	var wanted = document.body.dataset.open;
+	var showMenu = !!document.body.dataset.home;
 	try {
-		if (!sessionStorage.getItem('orto-seen')) {
-			Object.keys(overlays).forEach(function (k) { if (overlays[k].dataset.openOnLoad) openOverlay(k); });
-			sessionStorage.setItem('orto-seen', '1');
-		}
+		if (!sessionStorage.getItem('orto-seen')) showMenu = true;
+		sessionStorage.setItem('orto-seen', '1');
 	} catch (err) {}
+	if (showMenu) Object.keys(overlays).forEach(function (k) { if (overlays[k].dataset.openOnLoad) openOverlay(k); });
 	if (wanted) openOverlay(wanted);
 
 	// ------------------------------------------------------------ slideshow

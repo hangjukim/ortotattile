@@ -839,3 +839,6 @@ body.mobile audio-player {
 /* ---- adjustments that must come after the site design ---- */
 html.mobile .page-content { border-width: 0 !important; }
 html.mobile .page-layout { max-width: 100% !important; padding: 0 !important; }
+
+/* keep "(close)" on one line */
+a[data-close-overlay] { white-space: nowrap; }
